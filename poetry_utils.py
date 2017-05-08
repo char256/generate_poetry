@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import numpy as np
 import types
 import cn_utils
@@ -13,6 +14,10 @@ def _generate_feature(poetry):
 
 
 def generate_data(poetries, data, split = 'train'):
+    '''
+    输出的data里，data[feature]是题目的编码，一共20个整数，不足
+    补0。data[captions]是古诗的内容，一共100个字符，不足补0
+    '''
     assert type(poetries[0].title[0]) == types.IntType
     assert split == 'train' or split == 'val'
     N = len(poetries)

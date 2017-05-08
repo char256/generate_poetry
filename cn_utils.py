@@ -11,6 +11,7 @@ def readFile(filepath):
     """
     中文单词的编码是三个一组，每次读取后有一个换行，为了以后处理方便，
     在读取文件的时候直接将换行删除
+    return： 一个列表，里面包含了读取的古诗(Poetry类)
     """
     filename= os.listdir(filepath)
     pt = []

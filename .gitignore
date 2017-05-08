@@ -1,3 +1,6 @@
 *.pyc
 .vscode
 .ipynb_checkpoints
+
+
+ptb_data
