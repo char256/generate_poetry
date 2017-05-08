@@ -9,11 +9,7 @@ max_word = 100
 def _generate_feature(poetry):
     assert type(poetry.title[0]) == types.IntType
     feature = np.zeros(input_dim)
-    #feature[0:len(poetry.title)] = poetry.title
-    lenth = len(poetry.title)
-    for i in xrange(int(input_dim/(lenth+1))):
-        feature[i*(lenth+1): i*(lenth+1)+lenth] = poetry.title
-    print "poetry_utils._generate_feature:", feature
+    feature[0:len(poetry.title)] = poetry.title
     return feature
 
 
