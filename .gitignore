@@ -1,6 +1,8 @@
 *.pyc
 .vscode
 .ipynb_checkpoints
+logs/*
+poetry/*
 
 
 ptb_data
