@@ -2,6 +2,7 @@
 import os
 from Poetry import Poetry
 import types
+import collections
 
 start_caption = 'stt'
 end_caption = 'end'
@@ -57,6 +58,7 @@ def get_encoding(word_to_idx, idx_to_word, letters):
             word_to_idx[ch] = int(tot)
             tot += 1
     return word_to_idx, idx_to_word
+
 
 
 def get_idx_and_words(poetries):
@@ -117,3 +119,23 @@ def decodePoetry(encoded_poetry, idx_to_word):
     content = decodeChinese(poetry_captions, idx_to_word)
     return Poetry(title = title, content = content)
 
+
+#处理UTF-8字符
+def get_utf_encoding(letters):
+    counter = collections.Counter(letters)
+    counter_pairs = sorted(counter.items(), key = lambda x: -x[1])
+    words, _ = zip(*counter_pairs)
+    idx_to_word = words[:len(words)] + (' ',)
+    word_to_idx = dict(zip(words, range(len(words))))
+    return word_to_idx, idx_to_word
+
+def read_fullpoetry(filepath):
+    fopen = open(filepath, 'r')
+    poetries = []
+    for line in fopen:
+        line = line.decode('UTF-8')
+        line = line.strip('\n').strip(' ')
+        #print line.split(':')
+        title, content = line.split(':')
+        poetries.append(Poetry(title = title, content = content))
+    return poetries
